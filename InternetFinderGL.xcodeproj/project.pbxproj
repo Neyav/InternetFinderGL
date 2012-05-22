@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B96297F156C55AA00364573 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B96297E156C55AA00364573 /* UIKit.framework */; };
+		0B962981156C55AA00364573 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B962980156C55AA00364573 /* Foundation.framework */; };
+		0B962983156C55AA00364573 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B962982156C55AA00364573 /* CoreGraphics.framework */; };
+		0B962985156C55AA00364573 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B962984156C55AA00364573 /* GLKit.framework */; };
+		0B962987156C55AA00364573 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B962986156C55AA00364573 /* OpenGLES.framework */; };
+		0B96298D156C55AA00364573 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B96298B156C55AA00364573 /* InfoPlist.strings */; };
+		0B96298F156C55AA00364573 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B96298E156C55AA00364573 /* main.m */; };
+		0B962993156C55AA00364573 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B962992156C55AA00364573 /* AppDelegate.m */; };
+		0B962995156C55AA00364573 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 0B962994156C55AA00364573 /* Shader.fsh */; };
+		0B962997156C55AA00364573 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 0B962996156C55AA00364573 /* Shader.vsh */; };
+		0B96299A156C55AA00364573 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B962999156C55AA00364573 /* ViewController.m */; };
+		0B96299D156C55AA00364573 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B96299B156C55AA00364573 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0B96297A156C55AA00364573 /* InternetFinderGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetFinderGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B96297E156C55AA00364573 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0B962980156C55AA00364573 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0B962982156C55AA00364573 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0B962984156C55AA00364573 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		0B962986156C55AA00364573 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		0B96298A156C55AA00364573 /* InternetFinderGL-Info.plist */ = {isa = PBXFileReference; path = "InternetFinderGL-Info.plist"; sourceTree = "<group>"; };
+		0B96298C156C55AA00364573 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0B96298E156C55AA00364573 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0B962990156C55AA00364573 /* InternetFinderGL-Prefix.pch */ = {isa = PBXFileReference; path = "InternetFinderGL-Prefix.pch"; sourceTree = "<group>"; };
+		0B962991156C55AA00364573 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		0B962992156C55AA00364573 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0B962994156C55AA00364573 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		0B962996156C55AA00364573 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		0B962998156C55AA00364573 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		0B962999156C55AA00364573 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0B96299C156C55AA00364573 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0B962977156C55AA00364573 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B96297F156C55AA00364573 /* UIKit.framework in Frameworks */,
+				0B962981156C55AA00364573 /* Foundation.framework in Frameworks */,
+				0B962983156C55AA00364573 /* CoreGraphics.framework in Frameworks */,
+				0B962985156C55AA00364573 /* GLKit.framework in Frameworks */,
+				0B962987156C55AA00364573 /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B96296F156C55AA00364573 = {
+			isa = PBXGroup;
+			children = (
+				0B962988156C55AA00364573 /* InternetFinderGL */,
+				0B96297D156C55AA00364573 /* Frameworks */,
+				0B96297B156C55AA00364573 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0B96297B156C55AA00364573 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B96297A156C55AA00364573 /* InternetFinderGL.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0B96297D156C55AA00364573 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B96297E156C55AA00364573 /* UIKit.framework */,
+				0B962980156C55AA00364573 /* Foundation.framework */,
+				0B962982156C55AA00364573 /* CoreGraphics.framework */,
+				0B962984156C55AA00364573 /* GLKit.framework */,
+				0B962986156C55AA00364573 /* OpenGLES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0B962988156C55AA00364573 /* InternetFinderGL */ = {
+			isa = PBXGroup;
+			children = (
+				0B962991156C55AA00364573 /* AppDelegate.h */,
+				0B962992156C55AA00364573 /* AppDelegate.m */,
+				0B962994156C55AA00364573 /* Shader.fsh */,
+				0B962996156C55AA00364573 /* Shader.vsh */,
+				0B962998156C55AA00364573 /* ViewController.h */,
+				0B962999156C55AA00364573 /* ViewController.m */,
+				0B96299B156C55AA00364573 /* ViewController.xib */,
+				0B962989156C55AA00364573 /* Supporting Files */,
+			);
+			path = InternetFinderGL;
+			sourceTree = "<group>";
+		};
+		0B962989156C55AA00364573 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B96298A156C55AA00364573 /* InternetFinderGL-Info.plist */,
+				0B96298B156C55AA00364573 /* InfoPlist.strings */,
+				0B96298E156C55AA00364573 /* main.m */,
+				0B962990156C55AA00364573 /* InternetFinderGL-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0B962979156C55AA00364573 /* InternetFinderGL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B9629A0156C55AA00364573 /* Build configuration list for PBXNativeTarget "InternetFinderGL" */;
+			buildPhases = (
+				0B962976156C55AA00364573 /* Sources */,
+				0B962977156C55AA00364573 /* Frameworks */,
+				0B962978156C55AA00364573 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InternetFinderGL;
+			productName = InternetFinderGL;
+			productReference = 0B96297A156C55AA00364573 /* InternetFinderGL.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0B962971156C55AA00364573 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 0B962974156C55AA00364573 /* Build configuration list for PBXProject "InternetFinderGL" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0B96296F156C55AA00364573;
+			productRefGroup = 0B96297B156C55AA00364573 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0B962979156C55AA00364573 /* InternetFinderGL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0B962978156C55AA00364573 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B96298D156C55AA00364573 /* InfoPlist.strings in Resources */,
+				0B962995156C55AA00364573 /* Shader.fsh in Resources */,
+				0B962997156C55AA00364573 /* Shader.vsh in Resources */,
+				0B96299D156C55AA00364573 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0B962976156C55AA00364573 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B96298F156C55AA00364573 /* main.m in Sources */,
+				0B962993156C55AA00364573 /* AppDelegate.m in Sources */,
+				0B96299A156C55AA00364573 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0B96298B156C55AA00364573 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B96298C156C55AA00364573 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0B96299B156C55AA00364573 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B96299C156C55AA00364573 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0B96299E156C55AA00364573 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0B96299F156C55AA00364573 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0B9629A1156C55AA00364573 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InternetFinderGL/InternetFinderGL-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "InternetFinderGL/InternetFinderGL-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0B9629A2156C55AA00364573 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InternetFinderGL/InternetFinderGL-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "InternetFinderGL/InternetFinderGL-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0B962974156C55AA00364573 /* Build configuration list for PBXProject "InternetFinderGL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B96299E156C55AA00364573 /* Debug */,
+				0B96299F156C55AA00364573 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0B9629A0156C55AA00364573 /* Build configuration list for PBXNativeTarget "InternetFinderGL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B9629A1156C55AA00364573 /* Debug */,
+				0B9629A2156C55AA00364573 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0B962971156C55AA00364573 /* Project object */;
+}
