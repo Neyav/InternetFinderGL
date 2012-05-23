@@ -6,9 +6,17 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
+#import "SpriteHandler.h"
+#import "MapHandler.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
+
+#define SPRITE_FLOOR    0
+#define SPRITE_WALL     1
+#define SPRITE_PLAYER   2
+#define SPRITE_INTERNET 3
 
 // Uniform index.
 enum
@@ -27,53 +35,6 @@ enum
     NUM_ATTRIBUTES
 };
 
-GLfloat gCubeVertexData[216] = 
-{
-    // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-    0.5f, -0.5f, -0.5f,        1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,          1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    
-    0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-    
-    -0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-    
-    -0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-    
-    0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
-};
-
 @interface ViewController () {
     GLuint _program;
     
@@ -83,12 +44,17 @@ GLfloat gCubeVertexData[216] =
     
     GLuint _vertexArray;
     GLuint _vertexBuffer;
+    
+    CADisplayLink *GameTimer;
+    MapObject *LocalPlayer;
+    int touchX,touchY;
+    char touching;
+    MapHandler *GameMap;
+    
+    SpriteHandler *CommonSprites[4];
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
-
-- (void)setupGL;
-- (void)tearDownGL;
 
 - (BOOL)loadShaders;
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
@@ -113,16 +79,51 @@ GLfloat gCubeVertexData[216] =
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+
+    [EAGLContext setCurrentContext:self.context];
     
-    [self setupGL];
+    self.effect = [[GLKBaseEffect alloc] init];
+    
+ //   float scale = [UIScreen mainScreen].scale;
+    GLKMatrix4 projectionMatrix;
+    
+ //   if ( scale < 2.0f )
+  //      projectionMatrix = GLKMatrix4MakeOrtho(0, 480, 0, 320, -1024, 1024);
+  //  else 
+        projectionMatrix = GLKMatrix4MakeOrtho(0, 960, 0, 640, -1024, 1024);
+    
+    self.effect.transform.projectionMatrix = projectionMatrix;
+    
+    // Load the sprites we're going to use often
+    CommonSprites[SPRITE_FLOOR] = [[SpriteHandler alloc] initWithFile:@"tilefloor@2x.png" effect:self.effect];
+    CommonSprites[SPRITE_WALL] = [[SpriteHandler alloc] initWithFile:@"tilewall@2x.png" effect:self.effect];
+    CommonSprites[SPRITE_PLAYER] = [[SpriteHandler alloc] initWithFile:@"playernormal@2x.png" effect:self.effect];
+    CommonSprites[SPRITE_INTERNET] = [[SpriteHandler alloc] initWithFile:@"1interwebs@2x.png" effect:self.effect];
+    
+    // SETUP THE GAME WORLD -- THIS WILL NEED TO BE MOVED
+    GameMap = [[MapHandler alloc] init];
+    [GameMap InitMap];
+    [GameMap GenerateMap:95 :95];
+    
+    LocalPlayer = [GameMap MOBJ_Add:1 :1 :MOBJ_PLAYER :NO];
+    
+    touching = 0;
+    
+    if ( !LocalPlayer )
+        NSLog(@"ERROR: No Local Player!");
+    
+    // Populate the world with interwebs
+    [GameMap PopulatemapwithInterwebs:300];
+    
+    GameTimer = [CADisplayLink displayLinkWithTarget:self selector:@selector(UpdateDisplay:)];
+    GameTimer.frameInterval = 2;
+    [GameTimer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+
 }
 
 - (void)viewDidUnload
 {    
     [super viewDidUnload];
-    
-    [self tearDownGL];
     
     if ([EAGLContext currentContext] == self.context) {
         [EAGLContext setCurrentContext:nil];
@@ -145,98 +146,205 @@ GLfloat gCubeVertexData[216] =
     }
 }
 
-- (void)setupGL
-{
-    [EAGLContext setCurrentContext:self.context];
-    
-    [self loadShaders];
-    
-    self.effect = [[GLKBaseEffect alloc] init];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
-    
-    glEnable(GL_DEPTH_TEST);
-    
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
-    
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
-    
-    glBindVertexArrayOES(0);
-}
-
-- (void)tearDownGL
-{
-    [EAGLContext setCurrentContext:self.context];
-    
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteVertexArraysOES(1, &_vertexArray);
-    
-    self.effect = nil;
-    
-    if (_program) {
-        glDeleteProgram(_program);
-        _program = 0;
-    }
-}
-
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
 {
-    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
-    self.effect.transform.projectionMatrix = projectionMatrix;
-    
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -4.0f);
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
-    
-    // Compute the model view matrix for the object rendered with GLKit
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    self.effect.transform.modelviewMatrix = modelViewMatrix;
-    
-    // Compute the model view matrix for the object rendered with ES2
-    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
-    
-    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
-    
-    _rotation += self.timeSinceLastUpdate * 0.5f;
 }
+
+- (void)RenderFloors
+{
+    char RenderX = LocalPlayer->X - 3;
+    char RenderY = LocalPlayer->Y - 4;
+    
+    for ( int x = 0; x < 7; x++)
+    {
+        for ( int y = 0; y < 9; y++)
+        {
+            char MapBlock = [GameMap GetBlock:RenderX :RenderY];
+            
+            // Calculate our draw positions topleft corner of the screen is 0,480
+            // Funny story about the 28... Our wall offset is no longer needed because openGL renders
+            // bottom left going up.... so now everything is offset...
+            int drawPosX = 480 - ( x * 128 - 128 ) + 28; 
+            int drawPosY = y * 128;
+            
+            // Adjust the screen offset by our players offset
+            
+            drawPosX += LocalPlayer->XOffset;
+            drawPosY -= LocalPlayer->YOffset;
+            
+            // We need the localplayer in the center of the screen
+            drawPosY -= 64;
+           
+            if ( MapBlock == '0' )
+            { // We only render floors this round
+                CommonSprites[SPRITE_FLOOR].position = GLKVector2Make(drawPosY, drawPosX);
+                [CommonSprites[SPRITE_FLOOR] render];
+            }
+              
+            RenderY++;
+        }
+    
+    RenderX++;
+    RenderY = LocalPlayer->Y - 4;  
+        
+    }
+    
+}
+
+- (void)RenderWallsandObjects
+{
+    char RenderX = LocalPlayer->X - 3;
+    char RenderY = LocalPlayer->Y - 4;
+    
+    for ( int x = 0; x < 7; x++)
+    {
+        for ( int y = 0; y < 9; y++)
+        {
+            char MapBlock = [GameMap GetBlock:RenderX :RenderY];
+            
+            // Calculate our draw positions topleft corner of the screen is 0,480
+            int drawPosX = 480 - ( x * 128 - 128 ) + 28;
+            int drawPosY = y * 128;
+            
+            // Adjust the screen offset by our players offset
+            
+            drawPosX += LocalPlayer->XOffset;
+            drawPosY -= LocalPlayer->YOffset;
+            
+            // We need the localplayer in the center of the screen
+            drawPosY -= 64;
+                        
+            if ( MapBlock == '1' )
+            { // Rendering walls this time!
+                drawPosY -= 28;
+                
+                CommonSprites[SPRITE_WALL].position = GLKVector2Make(drawPosY, drawPosX);
+                [CommonSprites[SPRITE_WALL] render];
+            }
+            else {
+                // Search for objects on this location as it is not a wall
+                MapObjectLinkedList *ItemList;
+                ItemList = [GameMap MOBJ_ListByLocation:RenderX :RenderY];
+                
+                // iterate the list and draw
+                while ( ItemList != nil )
+                {
+                    int Xoffset = drawPosX - (ItemList->MapObject->XOffset);
+                    int Yoffset = drawPosY + (ItemList->MapObject->YOffset);
+                    
+                    // Adjust offset based on the items size
+                    Xoffset += ( 64 - ( ItemList->MapObject->XSize / 2 ) );
+                    Yoffset += ( 64 - ( ItemList->MapObject->YSize / 2 ) );
+                    
+                    if ( ItemList->MapObject->ItemID == MOBJ_PLAYER )
+                    {
+                        CommonSprites[SPRITE_PLAYER].position = GLKVector2Make(Yoffset, Xoffset);
+                        [CommonSprites[SPRITE_PLAYER] render];
+                    }
+                    else if ( ItemList->MapObject->ItemID == MOBJ_INTERWEB )
+                    {
+                        CommonSprites[SPRITE_INTERNET].position = GLKVector2Make(Yoffset, Xoffset);
+                        [CommonSprites[SPRITE_INTERNET] render];                        
+                    }
+                    
+                    ItemList = ItemList->next;
+                    
+                }
+            }
+            
+            RenderY++;
+        }
+        
+        RenderX++;
+        RenderY = LocalPlayer->Y - 4;  
+        
+    }    
+}
+
+- (void)UpdateDisplay:(CADisplayLink*)sender
+{
+ 
+    glClearColor(0, 0, 0, 1);
+    glClear(GL_COLOR_BUFFER_BIT);    
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    
+    
+    // GAME LOGIC
+    if ( touching > 0 )
+    {
+        // Someone is DEFILING OUR SCREEN! Apply the pressure to momentum
+        int ScreencenterX = 240 +16;
+        int ScreencenterY = 160;
+        
+        int relativeX = touchX - ScreencenterX;
+        int relativeY = touchY - ScreencenterY;
+        
+        // Relative total is going to calculate the total distance from the center to our touch
+        
+        int relativeTotal = 0;
+        if ( relativeX < 0 )
+            relativeTotal += ( relativeX * -1 );
+        else
+            relativeTotal += relativeX;
+        
+        if ( relativeY < 0 )
+            relativeTotal += ( relativeY * -1 );
+        else 
+            relativeTotal += relativeY;
+        
+        int Modifier = relativeTotal / 20;
+        
+        if ( Modifier !=  0 )
+        {
+            relativeX /= Modifier;
+            relativeY /= Modifier;
+            
+            LocalPlayer->MomentumX = relativeX;
+            LocalPlayer->MomentumY = relativeY;
+        }
+    }
+    
+    // I REMEMBER YOU.... IN THE MOUNTAINS!!!
+    [GameMap GameTick];
+    [self RenderFloors];
+    [self RenderWallsandObjects];
+}
+
+// Respond to screen touches
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    for (UITouch* t in touches)
+    {
+        touching++;
+        touchX = [t locationInView:self.view].x;
+        touchY = [t locationInView:self.view].y;
+    }
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{    
+    for (UITouch* t in touches)
+    {
+        touchX = [t locationInView:self.view].x;
+        touchY = [t locationInView:self.view].y;
+    }
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch* t in touches)
+    {
+        touching--;
+    }
+}
+
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    glBindVertexArrayOES(_vertexArray);
-    
-    // Render the object with GLKit
-    [self.effect prepareToDraw];
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-    // Render the object again with ES2
-    glUseProgram(_program);
-    
-    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation

@@ -19,6 +19,25 @@
 		0B962997156C55AA00364573 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 0B962996156C55AA00364573 /* Shader.vsh */; };
 		0B96299A156C55AA00364573 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B962999156C55AA00364573 /* ViewController.m */; };
 		0B96299D156C55AA00364573 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B96299B156C55AA00364573 /* ViewController.xib */; };
+		0B9629B1156C57B300364573 /* 1interwebs.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629A3156C57B300364573 /* 1interwebs.png */; };
+		0B9629B2156C57B300364573 /* 1interwebs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629A4156C57B300364573 /* 1interwebs@2x.png */; };
+		0B9629B3156C57B300364573 /* dirtfloor1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629A5156C57B300364573 /* dirtfloor1.png */; };
+		0B9629B4156C57B300364573 /* dirtfloor1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629A6156C57B300364573 /* dirtfloor1@2x.png */; };
+		0B9629B5156C57B300364573 /* dirtwall1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629A7156C57B300364573 /* dirtwall1.png */; };
+		0B9629B6156C57B300364573 /* dirtwall1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629A8156C57B300364573 /* dirtwall1@2x.png */; };
+		0B9629B7156C57B300364573 /* playernormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629A9156C57B300364573 /* playernormal.png */; };
+		0B9629B8156C57B300364573 /* playernormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629AA156C57B300364573 /* playernormal@2x.png */; };
+		0B9629B9156C57B300364573 /* tilefloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629AB156C57B300364573 /* tilefloor.png */; };
+		0B9629BA156C57B300364573 /* tilefloor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629AC156C57B300364573 /* tilefloor@2x.png */; };
+		0B9629BB156C57B300364573 /* tilewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629AD156C57B300364573 /* tilewall.png */; };
+		0B9629BC156C57B300364573 /* tilewall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629AE156C57B300364573 /* tilewall@2x.png */; };
+		0B9629BD156C57B300364573 /* trollface.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629AF156C57B300364573 /* trollface.png */; };
+		0B9629BE156C57B300364573 /* trollface@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9629B0156C57B300364573 /* trollface@2x.png */; };
+		0B9629C1156C588600364573 /* SpriteHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9629C0156C588600364573 /* SpriteHandler.m */; };
+		0B9629CD156C7CC900364573 /* MapHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9629CA156C7CC900364573 /* MapHandler.m */; };
+		0B9629CE156C7CC900364573 /* MapObjectLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9629CC156C7CC900364573 /* MapObjectLinkedList.m */; };
+		0B9629D1156C7CD300364573 /* MapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9629D0156C7CD300364573 /* MapObject.m */; };
+		0B9629D3156C84F100364573 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9629D2156C84F100364573 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,17 +47,40 @@
 		0B962982156C55AA00364573 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0B962984156C55AA00364573 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		0B962986156C55AA00364573 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		0B96298A156C55AA00364573 /* InternetFinderGL-Info.plist */ = {isa = PBXFileReference; path = "InternetFinderGL-Info.plist"; sourceTree = "<group>"; };
+		0B96298A156C55AA00364573 /* InternetFinderGL-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InternetFinderGL-Info.plist"; sourceTree = "<group>"; };
 		0B96298C156C55AA00364573 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B96298E156C55AA00364573 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0B962990156C55AA00364573 /* InternetFinderGL-Prefix.pch */ = {isa = PBXFileReference; path = "InternetFinderGL-Prefix.pch"; sourceTree = "<group>"; };
-		0B962991156C55AA00364573 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		0B962990156C55AA00364573 /* InternetFinderGL-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InternetFinderGL-Prefix.pch"; sourceTree = "<group>"; };
+		0B962991156C55AA00364573 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0B962992156C55AA00364573 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0B962994156C55AA00364573 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
 		0B962996156C55AA00364573 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
-		0B962998156C55AA00364573 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		0B962998156C55AA00364573 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0B962999156C55AA00364573 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0B96299C156C55AA00364573 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		0B9629A3156C57B300364573 /* 1interwebs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1interwebs.png; sourceTree = "<group>"; };
+		0B9629A4156C57B300364573 /* 1interwebs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1interwebs@2x.png"; sourceTree = "<group>"; };
+		0B9629A5156C57B300364573 /* dirtfloor1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dirtfloor1.png; sourceTree = "<group>"; };
+		0B9629A6156C57B300364573 /* dirtfloor1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dirtfloor1@2x.png"; sourceTree = "<group>"; };
+		0B9629A7156C57B300364573 /* dirtwall1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dirtwall1.png; sourceTree = "<group>"; };
+		0B9629A8156C57B300364573 /* dirtwall1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dirtwall1@2x.png"; sourceTree = "<group>"; };
+		0B9629A9156C57B300364573 /* playernormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playernormal.png; sourceTree = "<group>"; };
+		0B9629AA156C57B300364573 /* playernormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playernormal@2x.png"; sourceTree = "<group>"; };
+		0B9629AB156C57B300364573 /* tilefloor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tilefloor.png; sourceTree = "<group>"; };
+		0B9629AC156C57B300364573 /* tilefloor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tilefloor@2x.png"; sourceTree = "<group>"; };
+		0B9629AD156C57B300364573 /* tilewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tilewall.png; sourceTree = "<group>"; };
+		0B9629AE156C57B300364573 /* tilewall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tilewall@2x.png"; sourceTree = "<group>"; };
+		0B9629AF156C57B300364573 /* trollface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trollface.png; sourceTree = "<group>"; };
+		0B9629B0156C57B300364573 /* trollface@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trollface@2x.png"; sourceTree = "<group>"; };
+		0B9629BF156C588600364573 /* SpriteHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteHandler.h; sourceTree = "<group>"; };
+		0B9629C0156C588600364573 /* SpriteHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteHandler.m; sourceTree = "<group>"; };
+		0B9629C9156C7CC900364573 /* MapHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapHandler.h; sourceTree = "<group>"; };
+		0B9629CA156C7CC900364573 /* MapHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapHandler.m; sourceTree = "<group>"; };
+		0B9629CB156C7CC900364573 /* MapObjectLinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapObjectLinkedList.h; sourceTree = "<group>"; };
+		0B9629CC156C7CC900364573 /* MapObjectLinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapObjectLinkedList.m; sourceTree = "<group>"; };
+		0B9629CF156C7CD200364573 /* MapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapObject.h; sourceTree = "<group>"; };
+		0B9629D0156C7CD300364573 /* MapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapObject.m; sourceTree = "<group>"; };
+		0B9629D2156C84F100364573 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B9629D3156C84F100364573 /* QuartzCore.framework in Frameworks */,
 				0B96297F156C55AA00364573 /* UIKit.framework in Frameworks */,
 				0B962981156C55AA00364573 /* Foundation.framework in Frameworks */,
 				0B962983156C55AA00364573 /* CoreGraphics.framework in Frameworks */,
@@ -60,6 +103,21 @@
 		0B96296F156C55AA00364573 = {
 			isa = PBXGroup;
 			children = (
+				0B9629D2156C84F100364573 /* QuartzCore.framework */,
+				0B9629A3156C57B300364573 /* 1interwebs.png */,
+				0B9629A4156C57B300364573 /* 1interwebs@2x.png */,
+				0B9629A5156C57B300364573 /* dirtfloor1.png */,
+				0B9629A6156C57B300364573 /* dirtfloor1@2x.png */,
+				0B9629A7156C57B300364573 /* dirtwall1.png */,
+				0B9629A8156C57B300364573 /* dirtwall1@2x.png */,
+				0B9629A9156C57B300364573 /* playernormal.png */,
+				0B9629AA156C57B300364573 /* playernormal@2x.png */,
+				0B9629AB156C57B300364573 /* tilefloor.png */,
+				0B9629AC156C57B300364573 /* tilefloor@2x.png */,
+				0B9629AD156C57B300364573 /* tilewall.png */,
+				0B9629AE156C57B300364573 /* tilewall@2x.png */,
+				0B9629AF156C57B300364573 /* trollface.png */,
+				0B9629B0156C57B300364573 /* trollface@2x.png */,
 				0B962988156C55AA00364573 /* InternetFinderGL */,
 				0B96297D156C55AA00364573 /* Frameworks */,
 				0B96297B156C55AA00364573 /* Products */,
@@ -89,12 +147,20 @@
 		0B962988156C55AA00364573 /* InternetFinderGL */ = {
 			isa = PBXGroup;
 			children = (
+				0B9629CF156C7CD200364573 /* MapObject.h */,
+				0B9629D0156C7CD300364573 /* MapObject.m */,
+				0B9629C9156C7CC900364573 /* MapHandler.h */,
+				0B9629CA156C7CC900364573 /* MapHandler.m */,
+				0B9629CB156C7CC900364573 /* MapObjectLinkedList.h */,
+				0B9629CC156C7CC900364573 /* MapObjectLinkedList.m */,
 				0B962991156C55AA00364573 /* AppDelegate.h */,
 				0B962992156C55AA00364573 /* AppDelegate.m */,
 				0B962994156C55AA00364573 /* Shader.fsh */,
 				0B962996156C55AA00364573 /* Shader.vsh */,
 				0B962998156C55AA00364573 /* ViewController.h */,
 				0B962999156C55AA00364573 /* ViewController.m */,
+				0B9629BF156C588600364573 /* SpriteHandler.h */,
+				0B9629C0156C588600364573 /* SpriteHandler.m */,
 				0B96299B156C55AA00364573 /* ViewController.xib */,
 				0B962989156C55AA00364573 /* Supporting Files */,
 			);
@@ -166,6 +232,20 @@
 				0B962995156C55AA00364573 /* Shader.fsh in Resources */,
 				0B962997156C55AA00364573 /* Shader.vsh in Resources */,
 				0B96299D156C55AA00364573 /* ViewController.xib in Resources */,
+				0B9629B1156C57B300364573 /* 1interwebs.png in Resources */,
+				0B9629B2156C57B300364573 /* 1interwebs@2x.png in Resources */,
+				0B9629B3156C57B300364573 /* dirtfloor1.png in Resources */,
+				0B9629B4156C57B300364573 /* dirtfloor1@2x.png in Resources */,
+				0B9629B5156C57B300364573 /* dirtwall1.png in Resources */,
+				0B9629B6156C57B300364573 /* dirtwall1@2x.png in Resources */,
+				0B9629B7156C57B300364573 /* playernormal.png in Resources */,
+				0B9629B8156C57B300364573 /* playernormal@2x.png in Resources */,
+				0B9629B9156C57B300364573 /* tilefloor.png in Resources */,
+				0B9629BA156C57B300364573 /* tilefloor@2x.png in Resources */,
+				0B9629BB156C57B300364573 /* tilewall.png in Resources */,
+				0B9629BC156C57B300364573 /* tilewall@2x.png in Resources */,
+				0B9629BD156C57B300364573 /* trollface.png in Resources */,
+				0B9629BE156C57B300364573 /* trollface@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +259,10 @@
 				0B96298F156C55AA00364573 /* main.m in Sources */,
 				0B962993156C55AA00364573 /* AppDelegate.m in Sources */,
 				0B96299A156C55AA00364573 /* ViewController.m in Sources */,
+				0B9629C1156C588600364573 /* SpriteHandler.m in Sources */,
+				0B9629CD156C7CC900364573 /* MapHandler.m in Sources */,
+				0B9629CE156C7CC900364573 /* MapObjectLinkedList.m in Sources */,
+				0B9629D1156C7CD300364573 /* MapObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
