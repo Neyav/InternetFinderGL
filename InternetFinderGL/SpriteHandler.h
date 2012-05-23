@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
+#define SPRITE_FLOOR            0
+#define SPRITE_WALL             1
+#define SPRITE_INTERNET         2
+#define SPRITE_PLAYER_NORMAL    3
+#define SPRITE_PLAYER_HAPPY     4
+#define SPRITE_PLAYER_VERYHAPPY 5
+#define SPRITE_PLAYER_DUMB      6
+#define SPRITE_NPC_TROLL        7
+
 @interface SpriteHandler : NSObject
 
 @property (assign) GLKVector2 position;

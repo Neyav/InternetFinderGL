@@ -10,6 +10,7 @@
 #include <time.h>
 
 #import "MapHandler.h"
+#import "SpriteHandler.h"
 
 @implementation MapHandler
 
@@ -162,8 +163,8 @@
     // Start our iterator at 1,1
     [self BlockIterator:1 :1];
     
-    // The map has been generated, now we are going to randomly destroy walls asunder!
-    int Blockstodestroy = XSize + YSize;
+    // The map has been generated, now we are going to randomly destroy walls! sunder ME!
+    int Blockstodestroy = (XSize + YSize) * 1.3;
     
     while ( Blockstodestroy )
     {
@@ -203,6 +204,26 @@
     // Iterate through the list to find objects with momentum
     while ( Iterator != nil )
     {
+        
+        if ( Iterator->MapObject->InternetsCollectedquicklytimer > 0 )
+        {
+            Iterator->MapObject->InternetsCollectedquicklytimer--;   // Tick Tock
+            
+            if ( Iterator->MapObject->InternetsCollectedquicklytimer == 0 )
+                Iterator->MapObject->InternetsCollectedquickly = 0;
+        }
+        
+        // Frame change
+        // Count down the timer and if it hits zero switch to defaultFrame
+        if ( Iterator->MapObject->framesToNext > 0 )
+        {
+            Iterator->MapObject->framesToNext--;
+            
+            if ( Iterator->MapObject->framesToNext == 0 )
+                Iterator->MapObject->Currentframe = Iterator->MapObject->defaultFrame;
+            
+        }
+        
         if ( Iterator->MapObject->MomentumX != 0 || Iterator->MapObject->MomentumY != 0 )
         {
             // This object has momentum
@@ -214,12 +235,13 @@
             int tempYO = Iterator->MapObject->YOffset;
             int ObjectXSize = Iterator->MapObject->XSize / 2;
             int ObjectYSize = Iterator->MapObject->YSize / 2;
+            BOOL hitWall = NO;
             
             tempXO += tempmoy;
             tempYO += tempmox;
             
             // Check to see if we left our block
-            // The player extends 16x16 in either direction. 
+            // The player extends 64x64 in either direction. 
             
             if ( tempXO > 64 - ObjectXSize )
             {
@@ -228,6 +250,7 @@
                 {
                     // hit a wall.
                     tempXO = 64-ObjectXSize; // Put us back to the last safe location.
+                    hitWall = YES;
                 }
             
             }
@@ -238,6 +261,7 @@
                 {
                     // hit a wall.
                     tempXO = -64+ObjectXSize; // Put us back to the last safe location.
+                    hitWall = YES;
                 }
             
             }                
@@ -248,6 +272,7 @@
                 {
                     // hit a wall.
                     tempYO = 64-ObjectYSize; // Put us back to the last safe location.
+                    hitWall = YES;
                 }
             
             }                
@@ -258,6 +283,7 @@
                 {
                     // hit a wall.
                     tempYO = -64 + ObjectYSize; // Put us back to the last safe location.
+                    hitWall = YES;
                 }
             
             }
@@ -334,6 +360,10 @@
             Iterator->MapObject->YOffset = tempYO;
             Iterator->MapObject->MomentumX = tempmox;
             Iterator->MapObject->MomentumY = tempmoy;
+            if ( hitWall )
+                Iterator->MapObject->timeOnWall++;
+            else
+                Iterator->MapObject->timeOnWall = 0;
             
             // If we are a player check our new location for collectables.
             if ( Iterator->MapObject->ItemID == MOBJ_PLAYER )
@@ -348,7 +378,32 @@
                     if ( LocationObject->Collectable )
                     {
                         // This is a collectable item.. Put per object handling code in here, but
-                        // remove it regardless
+                        // remove the item regardless
+                        
+                        if ( LocationObject->ItemID == MOBJ_INTERWEB ) 
+                        { // An interweb has been collected
+                            Iterator->MapObject->InternetsCollected++;
+                            
+                            if ( Iterator->MapObject->ItemID == MOBJ_PLAYER )
+                            { // This is our player. Make him/her happy!!! tickle tickle!
+                                Iterator->MapObject->InternetsCollectedquickly++;
+                                Iterator->MapObject->InternetsCollectedquicklytimer = 120; // 4 second timer
+                                
+                                if ( Iterator->MapObject->InternetsCollectedquickly == 5 )
+                                {
+                                    Iterator->MapObject->Currentframe = SPRITE_PLAYER_VERYHAPPY;
+                                    Iterator->MapObject->framesToNext = 240; // 8 second orgasm
+                                }
+                                else {
+                                    if ( Iterator->MapObject->Currentframe != SPRITE_PLAYER_VERYHAPPY )
+                                    { // Never interupt the orgasm!
+                                        Iterator->MapObject->Currentframe = SPRITE_PLAYER_HAPPY;
+                                        Iterator->MapObject->framesToNext = 120; // 4 seconds of me gusta...
+                                    }
+                                }
+                                
+                            }
+                        }
                         
                         [self MOBJ_Remove:LocationObject];
                         
@@ -366,7 +421,7 @@
     }
 }
 
--(MapObject *) MOBJ_Add:(int)X :(int)Y :(char)ItemID:(BOOL) Collectable
+-(MapObject *) MOBJ_Add:(int)X :(int)Y :(char)ItemID:(BOOL) Collectable defaultFrame:(int) defaultFrame
 {
     // This function adds a new map object to our game
     MapObject *NewObject;
@@ -405,6 +460,9 @@
     NewObject->X = X;
     NewObject->Y = Y;
     NewObject->ItemID = ItemID;
+    NewObject->Currentframe = NewObject->defaultFrame = defaultFrame;
+    NewObject->framesToNext = -1; // No timeout on default frame
+    NewObject->timeOnWall = 0;
     
     if ( ItemID == MOBJ_PLAYER )
     {
@@ -416,12 +474,19 @@
         NewObject->XSize = 64;
         NewObject->YSize = 64;
     }
+    else if ( ItemID == MOBJ_TROLL )
+    {
+        NewObject->XSize = 64;
+        NewObject->YSize = 64;
+    }
     
     NewObject->XOffset = 0;
     NewObject->YOffset = 0;
     NewObject->MomentumX = 0;
     NewObject->MomentumY = 0;
+    NewObject->InternetsCollected = 0;
     NewObject->Collectable = Collectable;
+    NewObject->InternetsCollectedquickly = NewObject->InternetsCollectedquicklytimer = 0;
     
     // If the last item is nil then this is the first item. Initalize the list
     if ( !MOBJ_Last )
@@ -528,10 +593,10 @@
     return LocationList;
 }
 
--(void) PopulatemapwithInterwebs:(int)Numberofinterwebs
+-(void) PopulatemapwithObject: (char) objectToPopulate: (int) defaultFrame: ( int ) numberOfItems
 {
     // We need to fill the map with the appropriate number of interwebs.
-    for ( int x = 0; x < Numberofinterwebs; x++ )
+    for ( int x = 0; x < numberOfItems; x++ )
     {
         BOOL Spawned = NO;
         
@@ -539,7 +604,7 @@
         {
             int spawnX = random() % XSize;
             int spawnY = random() % YSize;
-            if ( [self MOBJ_Add:spawnX :spawnY :MOBJ_INTERWEB :YES] != nil )
+            if ( [self MOBJ_Add:spawnX :spawnY :objectToPopulate :YES defaultFrame:defaultFrame] != nil )
                 Spawned = YES;
         }
     }

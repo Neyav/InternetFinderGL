@@ -12,7 +12,6 @@
 
 @interface MapHandler : NSObject
 {
-    //char MapData[20][20];
     char MapData[100][100];
     MapObjectLinkedList *MOBJ_List;
     MapObjectLinkedList *MOBJ_Last;
@@ -32,12 +31,11 @@
 
 -(void) GameTick;
 
--(MapObject *) MOBJ_Add:(int) X:(int) Y:(char) ItemID:(BOOL) Collectable;
+-(MapObject *) MOBJ_Add:(int)X :(int)Y :(char)ItemID:(BOOL) Collectable defaultFrame:(int) defaultFrame;
 
 -(void) MOBJ_Remove:(MapObject *) DeletedObject;
 
 -(MapObjectLinkedList *) MOBJ_ListByLocation:(int) X:(int) Y;
 
--(void) PopulatemapwithInterwebs:(int) Numberofinterwebs;
-
+-(void) PopulatemapwithObject: (char) objectToPopulate: (int) defaultFrame: ( int ) numberOfItems;
 @end

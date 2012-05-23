@@ -13,10 +13,7 @@
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-#define SPRITE_FLOOR    0
-#define SPRITE_WALL     1
-#define SPRITE_PLAYER   2
-#define SPRITE_INTERNET 3
+#define MOVEMENT_SPEED 20
 
 // Uniform index.
 enum
@@ -36,7 +33,7 @@ enum
 };
 
 @interface ViewController () {
-    GLuint _program;
+   GLuint _program;
     
     GLKMatrix4 _modelViewProjectionMatrix;
     GLKMatrix3 _normalMatrix;
@@ -51,7 +48,7 @@ enum
     char touching;
     MapHandler *GameMap;
     
-    SpriteHandler *CommonSprites[4];
+    SpriteHandler *CommonSprites[8];
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -97,15 +94,25 @@ enum
     // Load the sprites we're going to use often
     CommonSprites[SPRITE_FLOOR] = [[SpriteHandler alloc] initWithFile:@"tilefloor@2x.png" effect:self.effect];
     CommonSprites[SPRITE_WALL] = [[SpriteHandler alloc] initWithFile:@"tilewall@2x.png" effect:self.effect];
-    CommonSprites[SPRITE_PLAYER] = [[SpriteHandler alloc] initWithFile:@"playernormal@2x.png" effect:self.effect];
     CommonSprites[SPRITE_INTERNET] = [[SpriteHandler alloc] initWithFile:@"1interwebs@2x.png" effect:self.effect];
+    CommonSprites[SPRITE_PLAYER_NORMAL] = [[SpriteHandler alloc] initWithFile:@"player_normal.png" 
+                                                                       effect:self.effect];
+    CommonSprites[SPRITE_PLAYER_HAPPY] = [[SpriteHandler alloc] initWithFile:@"player_happy.png" 
+                                                                       effect:self.effect];
+    CommonSprites[SPRITE_PLAYER_VERYHAPPY] = [[SpriteHandler alloc] initWithFile:@"player_superhappy.png" 
+                                                                       effect:self.effect];
+    CommonSprites[SPRITE_PLAYER_DUMB] = [[SpriteHandler alloc] initWithFile:@"player_dumb.png" 
+                                                                       effect:self.effect];
+    CommonSprites[SPRITE_NPC_TROLL] = [[SpriteHandler alloc] initWithFile:@"npc_troll_normal.png" 
+                                                                   effect:self.effect];
     
     // SETUP THE GAME WORLD -- THIS WILL NEED TO BE MOVED
     GameMap = [[MapHandler alloc] init];
     [GameMap InitMap];
-    [GameMap GenerateMap:95 :95];
+    [GameMap GenerateMap:25 :25];
     
-    LocalPlayer = [GameMap MOBJ_Add:1 :1 :MOBJ_PLAYER :NO];
+    LocalPlayer = [GameMap MOBJ_Add:1 :1 :MOBJ_PLAYER :NO defaultFrame:SPRITE_PLAYER_NORMAL];
+    [GameMap MOBJ_Add:2 :1 :MOBJ_TROLL :NO defaultFrame:SPRITE_NPC_TROLL];
     
     touching = 0;
     
@@ -113,8 +120,9 @@ enum
         NSLog(@"ERROR: No Local Player!");
     
     // Populate the world with interwebs
-    [GameMap PopulatemapwithInterwebs:300];
+    [GameMap PopulatemapwithObject:MOBJ_INTERWEB :SPRITE_INTERNET :60];
     
+    view.enableSetNeedsDisplay = NO;
     GameTimer = [CADisplayLink displayLinkWithTarget:self selector:@selector(UpdateDisplay:)];
     GameTimer.frameInterval = 2;
     [GameTimer addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -241,13 +249,18 @@ enum
                     
                     if ( ItemList->MapObject->ItemID == MOBJ_PLAYER )
                     {
-                        CommonSprites[SPRITE_PLAYER].position = GLKVector2Make(Yoffset, Xoffset);
-                        [CommonSprites[SPRITE_PLAYER] render];
+                        if ( ItemList->MapObject->timeOnWall > 30 )
+                        {
+                            ItemList->MapObject->timeOnWall = 0;
+                            ItemList->MapObject->Currentframe = SPRITE_PLAYER_DUMB;
+                            ItemList->MapObject->framesToNext = 120; // You're dumb for 4 seconds!
+                        }
                     }
-                    else if ( ItemList->MapObject->ItemID == MOBJ_INTERWEB )
+                    
                     {
-                        CommonSprites[SPRITE_INTERNET].position = GLKVector2Make(Yoffset, Xoffset);
-                        [CommonSprites[SPRITE_INTERNET] render];                        
+                        CommonSprites[ItemList->MapObject->Currentframe].position = GLKVector2Make(Yoffset, Xoffset);
+                        [CommonSprites[ItemList->MapObject->Currentframe] render];
+                        
                     }
                     
                     ItemList = ItemList->next;
@@ -296,12 +309,17 @@ enum
         else 
             relativeTotal += relativeY;
         
-        int Modifier = relativeTotal / 20;
+        int Modifier = relativeTotal / MOVEMENT_SPEED;
         
         if ( Modifier !=  0 )
         {
             relativeX /= Modifier;
             relativeY /= Modifier;
+            
+            if ( relativeX > MOVEMENT_SPEED )
+                relativeX = MOVEMENT_SPEED;
+            if ( relativeY > MOVEMENT_SPEED )
+                relativeY = MOVEMENT_SPEED;
             
             LocalPlayer->MomentumX = relativeX;
             LocalPlayer->MomentumY = relativeY;
