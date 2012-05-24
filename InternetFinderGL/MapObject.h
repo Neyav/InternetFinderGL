@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WayPointList.h"
 
 #define MOBJ_PLAYER 1
 #define MOBJ_INTERWEB 2
@@ -27,6 +28,10 @@
     @public char InternetsCollectedquickly;
     @public char InternetsCollectedquicklytimer;
     
+    // AI specific
+    @public WayPointList *WayPoint;
+    @public char DepthSearch;
+    
     // Render specific
     @public int Currentframe;
     @public int defaultFrame;
@@ -39,5 +44,6 @@
     
     @public char ItemID;
     @public BOOL Collectable;
+    @public BOOL CanCollect;
 }
 @end

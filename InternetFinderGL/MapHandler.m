@@ -45,6 +45,7 @@
     YSize = 19;
     
     ActiveInterwebs = 0; // We are interwebless
+    TicksSinceAI = 0;
     
     // Seed the random number generator
     srandom ( time( NULL) );
@@ -195,15 +196,179 @@
     return (MapData[X][Y]);
 }
 
+// TROLL AI CODE
+
+-(BOOL) TrollWayPointGenerate: (MapObject *) Troll: (char) Depth: (char) MaxDepth: (char) X: (char) Y
+{
+    MapObjectLinkedList *CurrentBlock;
+    WayPointList *ListIterator;
+    WayPointList *EndofList;
+    WayPointList *OurEntry;
+    
+    if ( Depth > MaxDepth )
+        return NO; // We went too far.
+    
+    ListIterator = EndofList = OurEntry = Troll->WayPoint;
+    
+    // Make sure we haven't called on this block before
+    while ( ListIterator != nil )
+    {
+            if ( ListIterator->X == X && ListIterator->Y == Y )
+            {   // We called on this block before
+                return NO;
+            }
+        
+        if ( ListIterator->next != nil )
+            EndofList = ListIterator->next;
+        ListIterator = ListIterator->next;
+    }
+    
+    // This is at least a valid waypoint block, so lets add it to the current list.
+    OurEntry = [[WayPointList alloc] init];
+    
+    if ( EndofList == nil )
+    {
+        EndofList = OurEntry;
+        Troll->WayPoint = OurEntry;
+    }
+    else {
+        EndofList->next = OurEntry;
+    }
+    OurEntry->next = nil;
+    OurEntry->X = X;
+    OurEntry->Y = Y;
+    
+    // Check this block for internet
+    CurrentBlock = [self MOBJ_ListByLocation:X :Y];
+    while ( CurrentBlock != nil )
+    {
+        if ( CurrentBlock->MapObject->ItemID == MOBJ_INTERWEB )
+        {
+            // This path is confirmed!
+            return YES;
+        }
+        
+        CurrentBlock = CurrentBlock->next;
+    }
+    
+    // This block doesn't have anything on it,
+    // Expand in all valid directions.
+    if ( MapData[X - 1][Y] == '0' )
+        if ([self TrollWayPointGenerate:Troll :Depth+1 :MaxDepth :X-1 :Y] == YES )
+            return YES;
+    
+    OurEntry->next = nil;
+    
+    if ( MapData[X + 1][Y] == '0' )
+        if ([self TrollWayPointGenerate:Troll :Depth+1 :MaxDepth :X+1 :Y] == YES )
+            return YES;
+    
+    OurEntry->next = nil;
+    
+    if ( MapData[X][Y - 1] == '0' )
+        if ([self TrollWayPointGenerate:Troll :Depth+1 :MaxDepth :X :Y - 1] == YES )
+            return YES;
+    
+    OurEntry->next = nil;
+    
+    if ( MapData[X][Y + 1] == '0' )
+        if ([self TrollWayPointGenerate:Troll :Depth+1 :MaxDepth :X :Y + 1] == YES )
+            return YES;
+
+    OurEntry->next = nil;
+    
+    return NO;
+}
+
+-(void) TrollAITick: (MapObject *) Troll
+{
+    while ( Troll->WayPoint == nil )
+    {
+        // Generate a new waypoint
+        if ( [self TrollWayPointGenerate:Troll :1 :Troll->DepthSearch :Troll->X :Troll->Y] == NO )
+        {
+            Troll->WayPoint = nil;
+            Troll->DepthSearch += 5;
+            return; // Only do a search every ai gametick
+        }
+    }
+    
+    // Navigate towards the center of the next waypoint object.
+    char NextX = Troll->WayPoint->X;
+    char NextY = Troll->WayPoint->Y;
+    int DestOffsetX, DestOffsetY;
+    
+    
+    DestOffsetX = Troll->X - NextX;
+    DestOffsetY = Troll->Y - NextY;
+    
+    DestOffsetX *= 128;
+    DestOffsetY *= 128;
+    
+    
+    DestOffsetX += Troll->XOffset;
+    DestOffsetY += Troll->YOffset;
+    
+    DestOffsetX *= -1;
+    DestOffsetY *= -1;
+    
+
+    
+    if ( DestOffsetX > -25 && DestOffsetX < 25 )
+    {
+        if ( DestOffsetY > -25 && DestOffsetY < 25 )
+        {
+            // We reached the waypoint, set the next one
+            Troll->WayPoint = Troll->WayPoint->next;
+        }
+    }
+    
+    int relativeTotal = 0;
+    if ( DestOffsetX < 0 )
+        relativeTotal += ( DestOffsetX * -1 );
+    else
+        relativeTotal += DestOffsetX;
+    
+    if ( DestOffsetY < 0 )
+        relativeTotal += ( DestOffsetY * -1 );
+    else 
+        relativeTotal += DestOffsetY;
+    
+    int Modifier = relativeTotal / 10;
+    
+    if ( Modifier !=  0 )
+    {
+        DestOffsetX /= Modifier;
+        DestOffsetY /= Modifier;
+        
+        Troll->MomentumX = DestOffsetY;
+        Troll->MomentumY = DestOffsetX;
+    }
+
+    
+}
+
+// --- TROLL AI CODE ---
+
 -(void) GameTick
 {
     MapObjectLinkedList *Iterator;
     
     Iterator = MOBJ_List;
     
+    if ( TicksSinceAI > 2 )
+        TicksSinceAI = 1;
+    else     
+        TicksSinceAI++;
+    
     // Iterate through the list to find objects with momentum
     while ( Iterator != nil )
     {
+        
+        if ( Iterator->MapObject->ItemID == MOBJ_TROLL && TicksSinceAI > 2)
+        { // Object is an internet troll. See what is under his bridge!
+            [self TrollAITick:Iterator->MapObject];
+        }
         
         if ( Iterator->MapObject->InternetsCollectedquicklytimer > 0 )
         {
@@ -365,8 +530,8 @@
             else
                 Iterator->MapObject->timeOnWall = 0;
             
-            // If we are a player check our new location for collectables.
-            if ( Iterator->MapObject->ItemID == MOBJ_PLAYER )
+            // If we are capable of collecting items then check for them.
+            if ( Iterator->MapObject->CanCollect == YES )
             {
                 MapObjectLinkedList *newlocation = 
                             [self MOBJ_ListByLocation:Iterator->MapObject->X :Iterator->MapObject->Y];
@@ -383,6 +548,7 @@
                         if ( LocationObject->ItemID == MOBJ_INTERWEB ) 
                         { // An interweb has been collected
                             Iterator->MapObject->InternetsCollected++;
+                            ActiveInterwebs--;
                             
                             if ( Iterator->MapObject->ItemID == MOBJ_PLAYER )
                             { // This is our player. Make him/her happy!!! tickle tickle!
@@ -421,7 +587,8 @@
     }
 }
 
--(MapObject *) MOBJ_Add:(int)X :(int)Y :(char)ItemID:(BOOL) Collectable defaultFrame:(int) defaultFrame
+-(MapObject *) MOBJ_Add:(int)X :(int)Y :(char)ItemID:(BOOL) Collectable:(BOOL) CanCollect 
+                            defaultFrame:(int) defaultFrame
 {
     // This function adds a new map object to our game
     MapObject *NewObject;
@@ -463,6 +630,7 @@
     NewObject->Currentframe = NewObject->defaultFrame = defaultFrame;
     NewObject->framesToNext = -1; // No timeout on default frame
     NewObject->timeOnWall = 0;
+    NewObject->WayPoint = nil;
     
     if ( ItemID == MOBJ_PLAYER )
     {
@@ -478,6 +646,7 @@
     {
         NewObject->XSize = 64;
         NewObject->YSize = 64;
+        NewObject->DepthSearch = 5;
     }
     
     NewObject->XOffset = 0;
@@ -486,6 +655,7 @@
     NewObject->MomentumY = 0;
     NewObject->InternetsCollected = 0;
     NewObject->Collectable = Collectable;
+    NewObject->CanCollect = CanCollect;
     NewObject->InternetsCollectedquickly = NewObject->InternetsCollectedquicklytimer = 0;
     
     // If the last item is nil then this is the first item. Initalize the list
@@ -596,6 +766,15 @@
 -(void) PopulatemapwithObject: (char) objectToPopulate: (int) defaultFrame: ( int ) numberOfItems
 {
     // We need to fill the map with the appropriate number of interwebs.
+    BOOL CanCollect = NO;
+    BOOL Collectable = YES;
+    
+    if ( objectToPopulate == MOBJ_TROLL )
+    {
+        CanCollect = YES;
+        Collectable = NO;
+    }
+    
     for ( int x = 0; x < numberOfItems; x++ )
     {
         BOOL Spawned = NO;
@@ -604,7 +783,7 @@
         {
             int spawnX = random() % XSize;
             int spawnY = random() % YSize;
-            if ( [self MOBJ_Add:spawnX :spawnY :objectToPopulate :YES defaultFrame:defaultFrame] != nil )
+            if ( [self MOBJ_Add:spawnX :spawnY :objectToPopulate :Collectable :CanCollect defaultFrame:defaultFrame] != nil )
                 Spawned = YES;
         }
     }

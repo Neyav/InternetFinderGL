@@ -17,6 +17,7 @@
     MapObjectLinkedList *MOBJ_Last;
     
     int ActiveInterwebs;
+    char TicksSinceAI;
     
     @public int XSize;
     @public int YSize;
@@ -31,7 +32,8 @@
 
 -(void) GameTick;
 
--(MapObject *) MOBJ_Add:(int)X :(int)Y :(char)ItemID:(BOOL) Collectable defaultFrame:(int) defaultFrame;
+-(MapObject *) MOBJ_Add:(int)X :(int)Y :(char)ItemID:(BOOL) Collectable :(BOOL) CanCollect 
+                                defaultFrame:(int) defaultFrame;
 
 -(void) MOBJ_Remove:(MapObject *) DeletedObject;
 

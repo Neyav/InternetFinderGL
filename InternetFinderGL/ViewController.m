@@ -109,10 +109,9 @@ enum
     // SETUP THE GAME WORLD -- THIS WILL NEED TO BE MOVED
     GameMap = [[MapHandler alloc] init];
     [GameMap InitMap];
-    [GameMap GenerateMap:25 :25];
+    [GameMap GenerateMap:30 :30];
     
-    LocalPlayer = [GameMap MOBJ_Add:1 :1 :MOBJ_PLAYER :NO defaultFrame:SPRITE_PLAYER_NORMAL];
-    [GameMap MOBJ_Add:2 :1 :MOBJ_TROLL :NO defaultFrame:SPRITE_NPC_TROLL];
+    LocalPlayer = [GameMap MOBJ_Add:1 :1 :MOBJ_PLAYER :NO :YES defaultFrame:SPRITE_PLAYER_NORMAL];
     
     touching = 0;
     
@@ -121,6 +120,7 @@ enum
     
     // Populate the world with interwebs
     [GameMap PopulatemapwithObject:MOBJ_INTERWEB :SPRITE_INTERNET :60];
+    [GameMap PopulatemapwithObject:MOBJ_TROLL :SPRITE_NPC_TROLL :2];
     
     view.enableSetNeedsDisplay = NO;
     GameTimer = [CADisplayLink displayLinkWithTarget:self selector:@selector(UpdateDisplay:)];

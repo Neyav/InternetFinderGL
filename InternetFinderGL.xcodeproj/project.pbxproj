@@ -32,6 +32,7 @@
 		0BEA4B4F156D8D6400B24931 /* player_superhappy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEA4B4A156D8D6400B24931 /* player_superhappy.png */; };
 		0BEA4B50156D8D6400B24931 /* player_happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEA4B4B156D8D6400B24931 /* player_happy.png */; };
 		0BEA4B51156D8D6400B24931 /* npc_troll_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEA4B4C156D8D6400B24931 /* npc_troll_normal.png */; };
+		0BEA4B54156D9F3300B24931 /* WayPointList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEA4B53156D9F3300B24931 /* WayPointList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,8 @@
 		0BEA4B4A156D8D6400B24931 /* player_superhappy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_superhappy.png; sourceTree = "<group>"; };
 		0BEA4B4B156D8D6400B24931 /* player_happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_happy.png; sourceTree = "<group>"; };
 		0BEA4B4C156D8D6400B24931 /* npc_troll_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = npc_troll_normal.png; sourceTree = "<group>"; };
+		0BEA4B52156D9F3300B24931 /* WayPointList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayPointList.h; sourceTree = "<group>"; };
+		0BEA4B53156D9F3300B24931 /* WayPointList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPointList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 		0B962988156C55AA00364573 /* InternetFinderGL */ = {
 			isa = PBXGroup;
 			children = (
+				0BEA4B52156D9F3300B24931 /* WayPointList.h */,
+				0BEA4B53156D9F3300B24931 /* WayPointList.m */,
 				0B9629CF156C7CD200364573 /* MapObject.h */,
 				0B9629D0156C7CD300364573 /* MapObject.m */,
 				0B9629C9156C7CC900364573 /* MapHandler.h */,
@@ -239,6 +244,7 @@
 				0B9629CD156C7CC900364573 /* MapHandler.m in Sources */,
 				0B9629CE156C7CC900364573 /* MapObjectLinkedList.m in Sources */,
 				0B9629D1156C7CD300364573 /* MapObject.m in Sources */,
+				0BEA4B54156D9F3300B24931 /* WayPointList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
