@@ -24,6 +24,7 @@
 @property (assign) CGSize contentSize;
 
 - (id)initWithFile:(NSString *)fileName effect:(GLKBaseEffect *)effect;
+- (void)Foldup:(float) FoldupValue;
 - (void)render;
 
 @end

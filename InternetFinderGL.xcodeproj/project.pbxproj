@@ -27,6 +27,46 @@
 		0B9629CE156C7CC900364573 /* MapObjectLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9629CC156C7CC900364573 /* MapObjectLinkedList.m */; };
 		0B9629D1156C7CD300364573 /* MapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9629D0156C7CD300364573 /* MapObject.m */; };
 		0B9629D3156C84F100364573 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9629D2156C84F100364573 /* QuartzCore.framework */; };
+		0BD76C9B156F13F20013340F /* HUDNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD76C9A156F13F20013340F /* HUDNotificationHandler.m */; };
+		0BD76C9E156F1A600013340F /* HUDMessageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD76C9D156F1A600013340F /* HUDMessageList.m */; };
+		0BD76CC0156F27CE0013340F /* mofont-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA0156F27CE0013340F /* mofont-5.png */; };
+		0BD76CC1156F27CE0013340F /* mofont-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA1156F27CE0013340F /* mofont-6.png */; };
+		0BD76CC2156F27CE0013340F /* mofont-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA2156F27CE0013340F /* mofont-7.png */; };
+		0BD76CC3156F27CE0013340F /* mofont-8.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA3156F27CE0013340F /* mofont-8.png */; };
+		0BD76CC4156F27CE0013340F /* mofont-9.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA4156F27CE0013340F /* mofont-9.png */; };
+		0BD76CC5156F27CE0013340F /* mofont-A.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA5156F27CE0013340F /* mofont-A.png */; };
+		0BD76CC6156F27CE0013340F /* mofont-B.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA6156F27CE0013340F /* mofont-B.png */; };
+		0BD76CC7156F27CE0013340F /* mofont-C.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA7156F27CE0013340F /* mofont-C.png */; };
+		0BD76CC8156F27CE0013340F /* mofont-D.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA8156F27CE0013340F /* mofont-D.png */; };
+		0BD76CC9156F27CE0013340F /* mofont-E.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CA9156F27CE0013340F /* mofont-E.png */; };
+		0BD76CCA156F27CE0013340F /* mofont-F.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CAA156F27CE0013340F /* mofont-F.png */; };
+		0BD76CCB156F27CE0013340F /* mofont-G.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CAB156F27CE0013340F /* mofont-G.png */; };
+		0BD76CCC156F27CE0013340F /* mofont-H.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CAC156F27CE0013340F /* mofont-H.png */; };
+		0BD76CCD156F27CE0013340F /* mofont-I.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CAD156F27CE0013340F /* mofont-I.png */; };
+		0BD76CCE156F27CE0013340F /* mofont-J.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CAE156F27CE0013340F /* mofont-J.png */; };
+		0BD76CCF156F27CE0013340F /* mofont-K.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CAF156F27CE0013340F /* mofont-K.png */; };
+		0BD76CD0156F27CE0013340F /* mofont-L.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB0156F27CE0013340F /* mofont-L.png */; };
+		0BD76CD1156F27CE0013340F /* mofont-M.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB1156F27CE0013340F /* mofont-M.png */; };
+		0BD76CD2156F27CE0013340F /* mofont-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB2156F27CE0013340F /* mofont-N.png */; };
+		0BD76CD3156F27CE0013340F /* mofont-O.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB3156F27CE0013340F /* mofont-O.png */; };
+		0BD76CD4156F27CE0013340F /* mofont-P.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB4156F27CE0013340F /* mofont-P.png */; };
+		0BD76CD5156F27CE0013340F /* mofont-period.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB5156F27CE0013340F /* mofont-period.png */; };
+		0BD76CD6156F27CE0013340F /* mofont-Q.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB6156F27CE0013340F /* mofont-Q.png */; };
+		0BD76CD7156F27CE0013340F /* mofont-R.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB7156F27CE0013340F /* mofont-R.png */; };
+		0BD76CD8156F27CE0013340F /* mofont-S.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB8156F27CE0013340F /* mofont-S.png */; };
+		0BD76CD9156F27CE0013340F /* mofont-T.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CB9156F27CE0013340F /* mofont-T.png */; };
+		0BD76CDA156F27CE0013340F /* mofont-U.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CBA156F27CE0013340F /* mofont-U.png */; };
+		0BD76CDB156F27CE0013340F /* mofont-V.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CBB156F27CE0013340F /* mofont-V.png */; };
+		0BD76CDC156F27CE0013340F /* mofont-W.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CBC156F27CE0013340F /* mofont-W.png */; };
+		0BD76CDD156F27CE0013340F /* mofont-X.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CBD156F27CE0013340F /* mofont-X.png */; };
+		0BD76CDE156F27CE0013340F /* mofont-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CBE156F27CE0013340F /* mofont-Y.png */; };
+		0BD76CDF156F27CE0013340F /* mofont-Z.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CBF156F27CE0013340F /* mofont-Z.png */; };
+		0BD76CE1156F287B0013340F /* mofont-!.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CE0156F287B0013340F /* mofont-!.png */; };
+		0BD76CE6156F2D0F0013340F /* mofont-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CE2156F2D0D0013340F /* mofont-3.png */; };
+		0BD76CE7156F2D0F0013340F /* mofont-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CE3156F2D0D0013340F /* mofont-2.png */; };
+		0BD76CE8156F2D0F0013340F /* mofont-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CE4156F2D0E0013340F /* mofont-4.png */; };
+		0BD76CE9156F2D0F0013340F /* mofont-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CE5156F2D0E0013340F /* mofont-1.png */; };
+		0BD76CEB156F2D620013340F /* mofont-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD76CEA156F2D610013340F /* mofont-0.png */; };
 		0BEA4B4D156D8D6400B24931 /* player_dumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEA4B48156D8D6400B24931 /* player_dumb.png */; };
 		0BEA4B4E156D8D6400B24931 /* player_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEA4B49156D8D6400B24931 /* player_normal.png */; };
 		0BEA4B4F156D8D6400B24931 /* player_superhappy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BEA4B4A156D8D6400B24931 /* player_superhappy.png */; };
@@ -65,6 +105,48 @@
 		0B9629CF156C7CD200364573 /* MapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapObject.h; sourceTree = "<group>"; };
 		0B9629D0156C7CD300364573 /* MapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapObject.m; sourceTree = "<group>"; };
 		0B9629D2156C84F100364573 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0BD76C99156F13F20013340F /* HUDNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDNotificationHandler.h; sourceTree = "<group>"; };
+		0BD76C9A156F13F20013340F /* HUDNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDNotificationHandler.m; sourceTree = "<group>"; };
+		0BD76C9C156F1A600013340F /* HUDMessageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDMessageList.h; sourceTree = "<group>"; };
+		0BD76C9D156F1A600013340F /* HUDMessageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDMessageList.m; sourceTree = "<group>"; };
+		0BD76CA0156F27CE0013340F /* mofont-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-5.png"; sourceTree = "<group>"; };
+		0BD76CA1156F27CE0013340F /* mofont-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-6.png"; sourceTree = "<group>"; };
+		0BD76CA2156F27CE0013340F /* mofont-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-7.png"; sourceTree = "<group>"; };
+		0BD76CA3156F27CE0013340F /* mofont-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-8.png"; sourceTree = "<group>"; };
+		0BD76CA4156F27CE0013340F /* mofont-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-9.png"; sourceTree = "<group>"; };
+		0BD76CA5156F27CE0013340F /* mofont-A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-A.png"; sourceTree = "<group>"; };
+		0BD76CA6156F27CE0013340F /* mofont-B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-B.png"; sourceTree = "<group>"; };
+		0BD76CA7156F27CE0013340F /* mofont-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-C.png"; sourceTree = "<group>"; };
+		0BD76CA8156F27CE0013340F /* mofont-D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-D.png"; sourceTree = "<group>"; };
+		0BD76CA9156F27CE0013340F /* mofont-E.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-E.png"; sourceTree = "<group>"; };
+		0BD76CAA156F27CE0013340F /* mofont-F.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-F.png"; sourceTree = "<group>"; };
+		0BD76CAB156F27CE0013340F /* mofont-G.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-G.png"; sourceTree = "<group>"; };
+		0BD76CAC156F27CE0013340F /* mofont-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-H.png"; sourceTree = "<group>"; };
+		0BD76CAD156F27CE0013340F /* mofont-I.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-I.png"; sourceTree = "<group>"; };
+		0BD76CAE156F27CE0013340F /* mofont-J.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-J.png"; sourceTree = "<group>"; };
+		0BD76CAF156F27CE0013340F /* mofont-K.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-K.png"; sourceTree = "<group>"; };
+		0BD76CB0156F27CE0013340F /* mofont-L.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-L.png"; sourceTree = "<group>"; };
+		0BD76CB1156F27CE0013340F /* mofont-M.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-M.png"; sourceTree = "<group>"; };
+		0BD76CB2156F27CE0013340F /* mofont-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-N.png"; sourceTree = "<group>"; };
+		0BD76CB3156F27CE0013340F /* mofont-O.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-O.png"; sourceTree = "<group>"; };
+		0BD76CB4156F27CE0013340F /* mofont-P.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-P.png"; sourceTree = "<group>"; };
+		0BD76CB5156F27CE0013340F /* mofont-period.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-period.png"; sourceTree = "<group>"; };
+		0BD76CB6156F27CE0013340F /* mofont-Q.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-Q.png"; sourceTree = "<group>"; };
+		0BD76CB7156F27CE0013340F /* mofont-R.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-R.png"; sourceTree = "<group>"; };
+		0BD76CB8156F27CE0013340F /* mofont-S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-S.png"; sourceTree = "<group>"; };
+		0BD76CB9156F27CE0013340F /* mofont-T.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-T.png"; sourceTree = "<group>"; };
+		0BD76CBA156F27CE0013340F /* mofont-U.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-U.png"; sourceTree = "<group>"; };
+		0BD76CBB156F27CE0013340F /* mofont-V.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-V.png"; sourceTree = "<group>"; };
+		0BD76CBC156F27CE0013340F /* mofont-W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-W.png"; sourceTree = "<group>"; };
+		0BD76CBD156F27CE0013340F /* mofont-X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-X.png"; sourceTree = "<group>"; };
+		0BD76CBE156F27CE0013340F /* mofont-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-Y.png"; sourceTree = "<group>"; };
+		0BD76CBF156F27CE0013340F /* mofont-Z.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-Z.png"; sourceTree = "<group>"; };
+		0BD76CE0156F287B0013340F /* mofont-!.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-!.png"; sourceTree = "<group>"; };
+		0BD76CE2156F2D0D0013340F /* mofont-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-3.png"; sourceTree = "<group>"; };
+		0BD76CE3156F2D0D0013340F /* mofont-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-2.png"; sourceTree = "<group>"; };
+		0BD76CE4156F2D0E0013340F /* mofont-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-4.png"; sourceTree = "<group>"; };
+		0BD76CE5156F2D0E0013340F /* mofont-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-1.png"; sourceTree = "<group>"; };
+		0BD76CEA156F2D610013340F /* mofont-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mofont-0.png"; sourceTree = "<group>"; };
 		0BEA4B48156D8D6400B24931 /* player_dumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_dumb.png; sourceTree = "<group>"; };
 		0BEA4B49156D8D6400B24931 /* player_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_normal.png; sourceTree = "<group>"; };
 		0BEA4B4A156D8D6400B24931 /* player_superhappy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_superhappy.png; sourceTree = "<group>"; };
@@ -94,6 +176,7 @@
 		0B96296F156C55AA00364573 = {
 			isa = PBXGroup;
 			children = (
+				0BD76C9F156F27B70013340F /* MoFont */,
 				0BEA4B48156D8D6400B24931 /* player_dumb.png */,
 				0BEA4B49156D8D6400B24931 /* player_normal.png */,
 				0BEA4B4A156D8D6400B24931 /* player_superhappy.png */,
@@ -146,6 +229,10 @@
 				0B962996156C55AA00364573 /* Shader.vsh */,
 				0B962998156C55AA00364573 /* ViewController.h */,
 				0B962999156C55AA00364573 /* ViewController.m */,
+				0BD76C9C156F1A600013340F /* HUDMessageList.h */,
+				0BD76C9D156F1A600013340F /* HUDMessageList.m */,
+				0BD76C99156F13F20013340F /* HUDNotificationHandler.h */,
+				0BD76C9A156F13F20013340F /* HUDNotificationHandler.m */,
 				0B9629BF156C588600364573 /* SpriteHandler.h */,
 				0B9629C0156C588600364573 /* SpriteHandler.m */,
 				0B96299B156C55AA00364573 /* ViewController.xib */,
@@ -163,6 +250,51 @@
 				0B962990156C55AA00364573 /* InternetFinderGL-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0BD76C9F156F27B70013340F /* MoFont */ = {
+			isa = PBXGroup;
+			children = (
+				0BD76CEA156F2D610013340F /* mofont-0.png */,
+				0BD76CE2156F2D0D0013340F /* mofont-3.png */,
+				0BD76CE3156F2D0D0013340F /* mofont-2.png */,
+				0BD76CE4156F2D0E0013340F /* mofont-4.png */,
+				0BD76CE5156F2D0E0013340F /* mofont-1.png */,
+				0BD76CE0156F287B0013340F /* mofont-!.png */,
+				0BD76CA0156F27CE0013340F /* mofont-5.png */,
+				0BD76CA1156F27CE0013340F /* mofont-6.png */,
+				0BD76CA2156F27CE0013340F /* mofont-7.png */,
+				0BD76CA3156F27CE0013340F /* mofont-8.png */,
+				0BD76CA4156F27CE0013340F /* mofont-9.png */,
+				0BD76CA5156F27CE0013340F /* mofont-A.png */,
+				0BD76CA6156F27CE0013340F /* mofont-B.png */,
+				0BD76CA7156F27CE0013340F /* mofont-C.png */,
+				0BD76CA8156F27CE0013340F /* mofont-D.png */,
+				0BD76CA9156F27CE0013340F /* mofont-E.png */,
+				0BD76CAA156F27CE0013340F /* mofont-F.png */,
+				0BD76CAB156F27CE0013340F /* mofont-G.png */,
+				0BD76CAC156F27CE0013340F /* mofont-H.png */,
+				0BD76CAD156F27CE0013340F /* mofont-I.png */,
+				0BD76CAE156F27CE0013340F /* mofont-J.png */,
+				0BD76CAF156F27CE0013340F /* mofont-K.png */,
+				0BD76CB0156F27CE0013340F /* mofont-L.png */,
+				0BD76CB1156F27CE0013340F /* mofont-M.png */,
+				0BD76CB2156F27CE0013340F /* mofont-N.png */,
+				0BD76CB3156F27CE0013340F /* mofont-O.png */,
+				0BD76CB4156F27CE0013340F /* mofont-P.png */,
+				0BD76CB5156F27CE0013340F /* mofont-period.png */,
+				0BD76CB6156F27CE0013340F /* mofont-Q.png */,
+				0BD76CB7156F27CE0013340F /* mofont-R.png */,
+				0BD76CB8156F27CE0013340F /* mofont-S.png */,
+				0BD76CB9156F27CE0013340F /* mofont-T.png */,
+				0BD76CBA156F27CE0013340F /* mofont-U.png */,
+				0BD76CBB156F27CE0013340F /* mofont-V.png */,
+				0BD76CBC156F27CE0013340F /* mofont-W.png */,
+				0BD76CBD156F27CE0013340F /* mofont-X.png */,
+				0BD76CBE156F27CE0013340F /* mofont-Y.png */,
+				0BD76CBF156F27CE0013340F /* mofont-Z.png */,
+			);
+			name = MoFont;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +359,44 @@
 				0BEA4B4F156D8D6400B24931 /* player_superhappy.png in Resources */,
 				0BEA4B50156D8D6400B24931 /* player_happy.png in Resources */,
 				0BEA4B51156D8D6400B24931 /* npc_troll_normal.png in Resources */,
+				0BD76CC0156F27CE0013340F /* mofont-5.png in Resources */,
+				0BD76CC1156F27CE0013340F /* mofont-6.png in Resources */,
+				0BD76CC2156F27CE0013340F /* mofont-7.png in Resources */,
+				0BD76CC3156F27CE0013340F /* mofont-8.png in Resources */,
+				0BD76CC4156F27CE0013340F /* mofont-9.png in Resources */,
+				0BD76CC5156F27CE0013340F /* mofont-A.png in Resources */,
+				0BD76CC6156F27CE0013340F /* mofont-B.png in Resources */,
+				0BD76CC7156F27CE0013340F /* mofont-C.png in Resources */,
+				0BD76CC8156F27CE0013340F /* mofont-D.png in Resources */,
+				0BD76CC9156F27CE0013340F /* mofont-E.png in Resources */,
+				0BD76CCA156F27CE0013340F /* mofont-F.png in Resources */,
+				0BD76CCB156F27CE0013340F /* mofont-G.png in Resources */,
+				0BD76CCC156F27CE0013340F /* mofont-H.png in Resources */,
+				0BD76CCD156F27CE0013340F /* mofont-I.png in Resources */,
+				0BD76CCE156F27CE0013340F /* mofont-J.png in Resources */,
+				0BD76CCF156F27CE0013340F /* mofont-K.png in Resources */,
+				0BD76CD0156F27CE0013340F /* mofont-L.png in Resources */,
+				0BD76CD1156F27CE0013340F /* mofont-M.png in Resources */,
+				0BD76CD2156F27CE0013340F /* mofont-N.png in Resources */,
+				0BD76CD3156F27CE0013340F /* mofont-O.png in Resources */,
+				0BD76CD4156F27CE0013340F /* mofont-P.png in Resources */,
+				0BD76CD5156F27CE0013340F /* mofont-period.png in Resources */,
+				0BD76CD6156F27CE0013340F /* mofont-Q.png in Resources */,
+				0BD76CD7156F27CE0013340F /* mofont-R.png in Resources */,
+				0BD76CD8156F27CE0013340F /* mofont-S.png in Resources */,
+				0BD76CD9156F27CE0013340F /* mofont-T.png in Resources */,
+				0BD76CDA156F27CE0013340F /* mofont-U.png in Resources */,
+				0BD76CDB156F27CE0013340F /* mofont-V.png in Resources */,
+				0BD76CDC156F27CE0013340F /* mofont-W.png in Resources */,
+				0BD76CDD156F27CE0013340F /* mofont-X.png in Resources */,
+				0BD76CDE156F27CE0013340F /* mofont-Y.png in Resources */,
+				0BD76CDF156F27CE0013340F /* mofont-Z.png in Resources */,
+				0BD76CE1156F287B0013340F /* mofont-!.png in Resources */,
+				0BD76CE6156F2D0F0013340F /* mofont-3.png in Resources */,
+				0BD76CE7156F2D0F0013340F /* mofont-2.png in Resources */,
+				0BD76CE8156F2D0F0013340F /* mofont-4.png in Resources */,
+				0BD76CE9156F2D0F0013340F /* mofont-1.png in Resources */,
+				0BD76CEB156F2D620013340F /* mofont-0.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +415,8 @@
 				0B9629CE156C7CC900364573 /* MapObjectLinkedList.m in Sources */,
 				0B9629D1156C7CD300364573 /* MapObject.m in Sources */,
 				0BEA4B54156D9F3300B24931 /* WayPointList.m in Sources */,
+				0BD76C9B156F13F20013340F /* HUDNotificationHandler.m in Sources */,
+				0BD76C9E156F1A600013340F /* HUDMessageList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

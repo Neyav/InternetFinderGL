@@ -47,8 +47,15 @@
     ActiveInterwebs = 0; // We are interwebless
     TicksSinceAI = 0;
     
+    HUDNotifications = nil;
+    
     // Seed the random number generator
     srandom ( time( NULL) );
+}
+
+-(void) LinkToNotifications:(HUDNotificationHandler *)NHand
+{
+    HUDNotifications = NHand;
 }
 
 // THIS IS USED BY AND ONLY BY GenerateMap
@@ -208,6 +215,16 @@
     if ( Depth > MaxDepth )
         return NO; // We went too far.
     
+    if ( Depth == MaxDepth && MaxDepth >= 35 )
+    {
+        // We can't keep doing searches like this or we'll run the processor to the core, just give it a 5%
+        // chance that we'll accept any route at max depth.
+        int Chance = random() % 100;
+        
+        if ( Chance <= 15 )
+            return YES; // I LIED!!!!
+    }
+    
     ListIterator = EndofList = OurEntry = Troll->WayPoint;
     
     // Make sure we haven't called on this block before
@@ -292,6 +309,8 @@
             return; // Only do a search every ai gametick
         }
     }
+    
+    Troll->DepthSearch = 5;
     
     // Navigate towards the center of the next waypoint object.
     char NextX = Troll->WayPoint->X;
@@ -550,6 +569,9 @@
                             Iterator->MapObject->InternetsCollected++;
                             ActiveInterwebs--;
                             
+                            if ( Iterator->MapObject->ItemID == MOBJ_TROLL )
+                                [HUDNotifications SendMessage:"TROLL GOT INTERNETS!" messageDuration:60 priority:NO];
+                            
                             if ( Iterator->MapObject->ItemID == MOBJ_PLAYER )
                             { // This is our player. Make him/her happy!!! tickle tickle!
                                 Iterator->MapObject->InternetsCollectedquickly++;
@@ -557,6 +579,7 @@
                                 
                                 if ( Iterator->MapObject->InternetsCollectedquickly == 5 )
                                 {
+                                    [HUDNotifications SendMessage:"OH MY GOODNESS YES!" messageDuration:120 priority:YES];
                                     Iterator->MapObject->Currentframe = SPRITE_PLAYER_VERYHAPPY;
                                     Iterator->MapObject->framesToNext = 240; // 8 second orgasm
                                 }
@@ -565,6 +588,7 @@
                                     { // Never interupt the orgasm!
                                         Iterator->MapObject->Currentframe = SPRITE_PLAYER_HAPPY;
                                         Iterator->MapObject->framesToNext = 120; // 4 seconds of me gusta...
+                                        [HUDNotifications SendMessage:"ME GUSTA!" messageDuration:30 priority:YES];
                                     }
                                 }
                                 

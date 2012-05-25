@@ -84,6 +84,21 @@ typedef struct {
     
 }
 
+- (void)Foldup:(float)FoldupValue
+{
+    TexturedQuad newQuad;
+    newQuad.bl.geometryVertex = CGPointMake(0, self.textureInfo.height * FoldupValue);
+    newQuad.br.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height * FoldupValue);
+    newQuad.tl.geometryVertex = CGPointMake(0, self.textureInfo.height);
+    newQuad.tr.geometryVertex = CGPointMake(self.textureInfo.width, self.textureInfo.height);
+    
+    newQuad.bl.textureVertex = CGPointMake(0, 0);
+    newQuad.br.textureVertex = CGPointMake(1, 0);
+    newQuad.tl.textureVertex = CGPointMake(0, 1);
+    newQuad.tr.textureVertex = CGPointMake(1, 1);
+    self.quad = newQuad;
+}
+
 - (void)render { 
     
     // 1

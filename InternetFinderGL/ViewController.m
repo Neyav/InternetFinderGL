@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "SpriteHandler.h"
 #import "MapHandler.h"
+#import "HUDNotificationHandler.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -47,6 +48,7 @@ enum
     int touchX,touchY;
     char touching;
     MapHandler *GameMap;
+    HUDNotificationHandler *HUDNotifications;
     
     SpriteHandler *CommonSprites[8];
 }
@@ -87,7 +89,7 @@ enum
  //   if ( scale < 2.0f )
   //      projectionMatrix = GLKMatrix4MakeOrtho(0, 480, 0, 320, -1024, 1024);
   //  else 
-        projectionMatrix = GLKMatrix4MakeOrtho(0, 960, 0, 640, -1024, 1024);
+        projectionMatrix = GLKMatrix4MakeOrtho(0, 960, 0, 640, -100, 100);
     
     self.effect.transform.projectionMatrix = projectionMatrix;
     
@@ -106,10 +108,16 @@ enum
     CommonSprites[SPRITE_NPC_TROLL] = [[SpriteHandler alloc] initWithFile:@"npc_troll_normal.png" 
                                                                    effect:self.effect];
     
+    // Load HUD Textures
+    HUDNotifications = [[HUDNotificationHandler alloc] init];
+    [HUDNotifications SetupTextures:self.effect];
+    
     // SETUP THE GAME WORLD -- THIS WILL NEED TO BE MOVED
     GameMap = [[MapHandler alloc] init];
     [GameMap InitMap];
-    [GameMap GenerateMap:30 :30];
+    [GameMap GenerateMap:40 :40];
+    
+    [GameMap LinkToNotifications:HUDNotifications];
     
     LocalPlayer = [GameMap MOBJ_Add:1 :1 :MOBJ_PLAYER :NO :YES defaultFrame:SPRITE_PLAYER_NORMAL];
     
@@ -119,7 +127,7 @@ enum
         NSLog(@"ERROR: No Local Player!");
     
     // Populate the world with interwebs
-    [GameMap PopulatemapwithObject:MOBJ_INTERWEB :SPRITE_INTERNET :60];
+    [GameMap PopulatemapwithObject:MOBJ_INTERWEB :SPRITE_INTERNET :100];
     [GameMap PopulatemapwithObject:MOBJ_TROLL :SPRITE_NPC_TROLL :2];
     
     view.enableSetNeedsDisplay = NO;
@@ -330,6 +338,8 @@ enum
     [GameMap GameTick];
     [self RenderFloors];
     [self RenderWallsandObjects];
+    
+    [HUDNotifications HUDTick];
 }
 
 // Respond to screen touches
